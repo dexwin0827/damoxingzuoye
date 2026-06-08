@@ -1,0 +1,6 @@
+# Mock mode uses only the Python standard library.
+# No third-party dependency is required for the default course demo.
+#
+# Optional OpenAI mode:
+# openai>=1.0.0
+

@@ -1,0 +1,179 @@
+[
+  {
+    "id": "TC001",
+    "category": "Hello world",
+    "language": "Python",
+    "user_input": "print('Hello, world!')",
+    "expected_focus": ["输出语句", "print", "程序入口"],
+    "manual_score": {"completeness": 5, "clarity": 5, "usefulness": 4, "risk_detection": 5, "overall": 5}
+  },
+  {
+    "id": "TC002",
+    "category": "变量赋值",
+    "language": "Python",
+    "user_input": "name = 'Alice'\nage = 18\nprint(name, age)",
+    "expected_focus": ["变量赋值", "输出", "变量说明"],
+    "manual_score": {"completeness": 5, "clarity": 5, "usefulness": 4, "risk_detection": 5, "overall": 5}
+  },
+  {
+    "id": "TC003",
+    "category": "条件判断",
+    "language": "Python",
+    "user_input": "score = 86\nif score >= 60:\n    print('pass')\nelse:\n    print('fail')",
+    "expected_focus": ["if", "else", "分支流程"],
+    "manual_score": {"completeness": 5, "clarity": 5, "usefulness": 5, "risk_detection": 5, "overall": 5}
+  },
+  {
+    "id": "TC004",
+    "category": "for 循环",
+    "language": "Python",
+    "user_input": "for i in range(3):\n    print(i)",
+    "expected_focus": ["for", "range", "循环输出"],
+    "manual_score": {"completeness": 5, "clarity": 5, "usefulness": 5, "risk_detection": 5, "overall": 5}
+  },
+  {
+    "id": "TC005",
+    "category": "while 循环",
+    "language": "Python",
+    "user_input": "count = 0\nwhile count < 3:\n    print(count)\n    count += 1",
+    "expected_focus": ["while", "计数变量", "循环结束条件"],
+    "manual_score": {"completeness": 5, "clarity": 5, "usefulness": 5, "risk_detection": 5, "overall": 5}
+  },
+  {
+    "id": "TC006",
+    "category": "函数",
+    "language": "Python",
+    "user_input": "def add(a, b):\n    return a + b\nprint(add(2, 3))",
+    "expected_focus": ["函数定义", "参数", "返回值"],
+    "manual_score": {"completeness": 5, "clarity": 5, "usefulness": 5, "risk_detection": 5, "overall": 5}
+  },
+  {
+    "id": "TC007",
+    "category": "列表",
+    "language": "Python",
+    "user_input": "nums = [1, 2, 3]\nfor n in nums:\n    print(n * 2)",
+    "expected_focus": ["列表", "遍历", "表达式"],
+    "manual_score": {"completeness": 5, "clarity": 5, "usefulness": 5, "risk_detection": 5, "overall": 5}
+  },
+  {
+    "id": "TC008",
+    "category": "字典",
+    "language": "Python",
+    "user_input": "student = {'name': 'Tom', 'score': 90}\nprint(student['name'])",
+    "expected_focus": ["字典", "键值对", "索引访问"],
+    "manual_score": {"completeness": 4, "clarity": 5, "usefulness": 4, "risk_detection": 5, "overall": 4}
+  },
+  {
+    "id": "TC009",
+    "category": "排序",
+    "language": "Python",
+    "user_input": "nums = [3, 1, 2]\nnums.sort()\nprint(nums)",
+    "expected_focus": ["排序", "列表原地修改", "输出"],
+    "manual_score": {"completeness": 5, "clarity": 5, "usefulness": 5, "risk_detection": 5, "overall": 5}
+  },
+  {
+    "id": "TC010",
+    "category": "递归",
+    "language": "Python",
+    "user_input": "def factorial(n):\n    if n <= 1:\n        return 1\n    return n * factorial(n - 1)",
+    "expected_focus": ["递归", "终止条件", "返回值"],
+    "manual_score": {"completeness": 4, "clarity": 4, "usefulness": 5, "risk_detection": 4, "overall": 4}
+  },
+  {
+    "id": "TC011",
+    "category": "类",
+    "language": "Python",
+    "user_input": "class Student:\n    def __init__(self, name):\n        self.name = name\n\ns = Student('Li')\nprint(s.name)",
+    "expected_focus": ["class", "__init__", "对象属性"],
+    "manual_score": {"completeness": 4, "clarity": 5, "usefulness": 5, "risk_detection": 5, "overall": 5}
+  },
+  {
+    "id": "TC012",
+    "category": "文件读取",
+    "language": "Python",
+    "user_input": "with open('data.txt', 'r', encoding='utf-8') as f:\n    text = f.read()\nprint(text)",
+    "expected_focus": ["open", "文件读取", "with"],
+    "manual_score": {"completeness": 4, "clarity": 5, "usefulness": 4, "risk_detection": 4, "overall": 4}
+  },
+  {
+    "id": "TC013",
+    "category": "文件写入",
+    "language": "Python",
+    "user_input": "with open('result.txt', 'w', encoding='utf-8') as f:\n    f.write('ok')",
+    "expected_focus": ["文件写入", "覆盖风险", "权限"],
+    "manual_score": {"completeness": 5, "clarity": 4, "usefulness": 5, "risk_detection": 5, "overall": 5}
+  },
+  {
+    "id": "TC014",
+    "category": "用户输入",
+    "language": "Python",
+    "user_input": "name = input('Your name: ')\nprint('Hello', name)",
+    "expected_focus": ["input", "字符串输入", "输出"],
+    "manual_score": {"completeness": 5, "clarity": 5, "usefulness": 5, "risk_detection": 5, "overall": 5}
+  },
+  {
+    "id": "TC015",
+    "category": "异常处理",
+    "language": "Python",
+    "user_input": "try:\n    x = int(input('number: '))\n    print(10 / x)\nexcept ZeroDivisionError:\n    print('cannot divide by zero')",
+    "expected_focus": ["try", "except", "除零异常"],
+    "manual_score": {"completeness": 5, "clarity": 5, "usefulness": 5, "risk_detection": 4, "overall": 5}
+  },
+  {
+    "id": "TC016",
+    "category": "eval 风险",
+    "language": "Python",
+    "user_input": "expr = input('expr: ')\nprint(eval(expr))",
+    "expected_focus": ["eval", "安全风险", "输入校验"],
+    "manual_score": {"completeness": 5, "clarity": 5, "usefulness": 5, "risk_detection": 5, "overall": 5}
+  },
+  {
+    "id": "TC017",
+    "category": "while True 风险",
+    "language": "Python",
+    "user_input": "while True:\n    command = input('> ')\n    if command == 'quit':\n        break\n    print(command)",
+    "expected_focus": ["while True", "break", "退出条件"],
+    "manual_score": {"completeness": 5, "clarity": 5, "usefulness": 5, "risk_detection": 5, "overall": 5}
+  },
+  {
+    "id": "TC018",
+    "category": "C printf",
+    "language": "C",
+    "user_input": "#include <stdio.h>\nint main() {\n    printf(\"Hello C\\n\");\n    return 0;\n}",
+    "expected_focus": ["C", "printf", "main"],
+    "manual_score": {"completeness": 4, "clarity": 4, "usefulness": 4, "risk_detection": 5, "overall": 4}
+  },
+  {
+    "id": "TC019",
+    "category": "C++ cout",
+    "language": "C++",
+    "user_input": "#include <iostream>\nusing namespace std;\nint main() {\n    cout << \"Hello C++\" << endl;\n    return 0;\n}",
+    "expected_focus": ["C++", "cout", "main"],
+    "manual_score": {"completeness": 4, "clarity": 4, "usefulness": 4, "risk_detection": 5, "overall": 4}
+  },
+  {
+    "id": "TC020",
+    "category": "综合样例",
+    "language": "Python",
+    "user_input": "def average(nums):\n    total = 0\n    for n in nums:\n        total += n\n    return total / len(nums)\n\nscores = [80, 90, 100]\nprint(average(scores))",
+    "expected_focus": ["函数", "列表", "for", "平均值"],
+    "manual_score": {"completeness": 5, "clarity": 5, "usefulness": 5, "risk_detection": 5, "overall": 5}
+  },
+  {
+    "id": "TC021",
+    "category": "裸 except 风险",
+    "language": "Python",
+    "user_input": "try:\n    value = int('abc')\nexcept:\n    print('error')",
+    "expected_focus": ["裸 except", "异常范围", "错误信息"],
+    "manual_score": {"completeness": 5, "clarity": 5, "usefulness": 5, "risk_detection": 5, "overall": 5}
+  },
+  {
+    "id": "TC022",
+    "category": "敏感信息风险",
+    "language": "Python",
+    "user_input": "password = '123456'\nprint('login success')",
+    "expected_focus": ["password", "硬编码", "敏感信息"],
+    "manual_score": {"completeness": 5, "clarity": 5, "usefulness": 5, "risk_detection": 5, "overall": 5}
+  }
+]
+
