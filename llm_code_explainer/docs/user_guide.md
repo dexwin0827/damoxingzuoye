@@ -209,7 +209,28 @@ data/test_cases.json
 - 裸 except 风险
 - password 敏感信息风险
 
-## 8. OpenAI 模式配置
+## 8. 用户反馈机制
+
+系统提供一个可选的轻量反馈机制。用户可以在查看解释结果后，通过命令行参数保存评分和文字反馈：
+
+```powershell
+python app.py --code "print('hello')" --feedback-score 5 --feedback-comment "解释清楚，适合初学者"
+```
+
+参数说明：
+
+- `--feedback-score`：1 到 5 分。
+- `--feedback-comment`：用户对解释结果的文字评价。
+
+反馈会追加写入：
+
+```text
+outputs/feedback.jsonl
+```
+
+该文件采用 JSON Lines 格式，每行是一条反馈记录。为了保持项目简单，系统没有引入数据库，也没有做用户登录。
+
+## 9. OpenAI 模式配置
 
 默认作业验收不需要 OpenAI API。若希望使用真实大模型，可以参考 `.env.example` 配置环境变量。
 
@@ -234,7 +255,7 @@ python app.py --code "def add(a, b): return a + b"
 - openai 模式需要安装 OpenAI SDK。
 - 如果 SDK 缺失、API Key 缺失或调用失败，程序会输出错误说明，不会中断整个系统。
 
-## 9. 输出字段解释
+## 10. 输出字段解释
 
 系统输出采用固定结构：
 
@@ -249,7 +270,7 @@ python app.py --code "def add(a, b): return a + b"
 | 优化建议 | 给出可读性、安全性或结构上的改进建议 |
 | 学习提示 | 总结适合初学者关注的知识点 |
 
-## 10. 常见错误与处理
+## 11. 常见错误与处理
 
 ### 10.1 代码为空
 
@@ -286,7 +307,7 @@ python app.py --code "print('hello')"
 
 如果使用 `Get-Content` 查看 Markdown 时中文显示乱码，通常是控制台编码显示问题，文件本身仍为 UTF-8。可以直接用编辑器打开 Markdown 文件，或在支持 UTF-8 的终端中查看。
 
-## 11. 验收建议
+## 12. 验收建议
 
 课程验收时建议依次执行：
 
@@ -304,7 +325,6 @@ python run_tests.py
 - `reports/system_design.md` 是否内容完整。
 - `reports/experiment_report.md` 是否说明实验过程和结果。
 
-## 12. 使用边界
+## 13. 使用边界
 
 本项目是课程作业级原型，不是生产级系统。它适合演示大模型应用系统的基本流程、mock 模型接口、异常处理和评测闭环；不适合替代专业代码审查、安全审计或大型 IDE 插件。
-

@@ -8,10 +8,10 @@ from .code_analyzer import analyze_code
 
 
 def _overview(code: str, features: list[str]) -> str:
+    if "可能包含递归调用" in features:
+        return "这段代码通过函数自我调用解决重复子问题，属于递归思路。"
     if "包含排序逻辑" in features:
         return "这段代码主要用于对数据进行排序或展示排序结果。"
-    if "可能包含递归调用" in features:
-        return "这段代码可能通过函数自我调用解决重复子问题，属于递归思路。"
     if "包含类定义" in features:
         return "这段代码定义了类，用于把数据和相关行为组织在一起。"
     if "包含文件读写" in features:
@@ -110,4 +110,3 @@ def explain_with_mock(code: str) -> str:
 - 本例涉及的主要知识点：{feature_text}。
 - 初学者可以先手动跟踪每一步变量值，再运行代码观察输出是否一致。
 """
-

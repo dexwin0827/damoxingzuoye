@@ -23,7 +23,18 @@ def detect_language(code: str) -> str:
         return "C"
     if re.search(r"\bint\s+main\s*\(", code):
         return "C"
-    if re.search(r"\bdef\s+\w+\s*\(", code) or "print(" in code or "range(" in code:
+    python_markers = [
+        r"\bdef\s+\w+\s*\(",
+        r"\bprint\s*\(",
+        r"\brange\s*\(",
+        r"\binput\s*\(",
+        r"\bwith\s+open\s*\(",
+        r"\bopen\s*\(",
+        r"\btry\s*:",
+        r"\bexcept\b",
+        r"\belif\b",
+    ]
+    if any(re.search(pattern, code) for pattern in python_markers):
         return "Python"
     if re.search(r"\b(class|for|while|if)\b", lower_code):
         return "Python 或类 C 语言"
@@ -49,6 +60,12 @@ def analyze_code(code: str) -> CodeAnalysis:
     features: list[str] = []
     risks: list[str] = []
 
+    function_names = re.findall(r"\bdef\s+([A-Za-z_]\w*)\s*\(", code)
+    recursive_call = any(
+        re.search(rf"\b{name}\s*\(", code[code.find(name) + len(name) :])
+        for name in function_names
+    )
+
     patterns = [
         ("包含输出语句", r"\bprint\s*\(|\bprintf\s*\(|\bcout\b"),
         ("包含输入语句", r"\binput\s*\(|\bscanf\s*\(|\bcin\b"),
@@ -62,11 +79,12 @@ def analyze_code(code: str) -> CodeAnalysis:
         ("包含排序逻辑", r"\bsorted\s*\(|\.sort\s*\(|\bsort\s*\("),
         ("包含异常处理", r"\btry\b|\bexcept\b|\bcatch\b"),
         ("包含文件读写", r"\bopen\s*\(|\bfopen\s*\(|\bifstream\b|\bofstream\b"),
-        ("可能包含递归调用", r"\breturn\s+\w+\s*\([^)]*\)"),
     ]
     for label, pattern in patterns:
         if re.search(pattern, code):
             features.append(label)
+    if recursive_call:
+        features.append("可能包含递归调用")
 
     risk_patterns = [
         ("使用 eval，可能执行不可信字符串，存在安全风险", r"\beval\s*\("),
@@ -74,7 +92,7 @@ def analyze_code(code: str) -> CodeAnalysis:
         ("存在 while True，需要确认循环内是否有可靠退出条件", r"\bwhile\s+True\s*:"),
         ("存在裸 except，可能掩盖真实错误原因", r"\bexcept\s*:"),
         ("代码中出现 password 字样，注意不要硬编码敏感信息", r"password"),
-        ("存在文件写入操作，需要注意覆盖文件和权限问题", r"open\s*\([^)]*[\"']w[\"']|ofstream\b|fopen\s*\([^)]*[\"']w"),
+        ("存在文件写入操作，需要注意覆盖文件和权限问题", r"open\s*\([^)]*[\"'](?:w|a|x)[\"']|ofstream\b|fopen\s*\([^)]*[\"'](?:w|a)[\"']"),
     ]
     for label, pattern in risk_patterns:
         if re.search(pattern, code, re.IGNORECASE):

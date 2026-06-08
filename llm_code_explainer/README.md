@@ -46,6 +46,14 @@ python app.py --file path\to\sample.py
 python app.py --mode mock --code "print('hello')"
 ```
 
+可选保存用户反馈：
+
+```powershell
+python app.py --code "print('hello')" --feedback-score 5 --feedback-comment "解释清楚"
+```
+
+反馈会追加保存到 `outputs/feedback.jsonl`，用于展示简单的用户反馈机制。
+
 ## 批量测试
 
 运行全部测试样例并生成报告：
@@ -65,6 +73,8 @@ python run_tests.py
 - [系统设计文档](reports/system_design.md)
 - [测试报告](reports/evaluation_report.md)
 - [实验报告](reports/experiment_report.md)
+
+本项目采用结构化输出作为可选组件，并额外提供轻量用户反馈机制；未引入 RAG、多 Agent、数据库或复杂前端。
 
 ## mock 与 OpenAI 模式
 

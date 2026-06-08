@@ -82,6 +82,8 @@ def _build_report(results: list[dict[str, Any]], stats: dict[str, float]) -> str
         "",
         "## 5. 测试样例表",
         "",
+        "完整系统输出已保存于 `outputs/test_results.json`。下表展示每条样例的输出摘要，便于快速浏览。",
+        "",
         "| ID | 类别 | 语言 | 期望关注点 | 综合分 | 输出摘要 |",
         "| --- | --- | --- | --- | ---: | --- |",
     ])
@@ -111,21 +113,36 @@ def _build_report(results: list[dict[str, Any]], stats: dict[str, float]) -> str
             "",
         ])
 
+    lines.extend(["## 7. 典型案例完整系统输出", ""])
+    for typical_id in typical_ids:
+        matched = next((item for item in results if item["case"]["id"] == typical_id), None)
+        if not matched:
+            continue
+        case = matched["case"]
+        lines.extend([
+            f"### {case['id']}：{case['category']}",
+            "",
+            "```text",
+            matched["output"].strip(),
+            "```",
+            "",
+        ])
+
     lines.extend([
-        "## 7. 系统优点",
+        "## 8. 系统优点",
         "",
         "- 默认 mock 模式可离线运行，降低课堂验收门槛。",
         "- 输出结构固定，便于阅读和比较不同样例。",
         "- 能识别常见语法结构和部分安全风险，如 eval、while True、文件写入和裸 except。",
         "- 代码量少，主要依赖 Python 标准库，便于理解和提交。",
         "",
-        "## 8. 系统不足",
+        "## 9. 系统不足",
         "",
         "- mock 模式基于规则，无法像真实大模型一样理解复杂上下文。",
         "- 递归、变量用途和算法意图的判断较粗略。",
         "- 人工评分写在测试样例中，不能替代严格的自动化质量评估。",
         "",
-        "## 9. 改进方向",
+        "## 10. 改进方向",
         "",
         "- 接入真实大模型后提升复杂代码解释质量。",
         "- 增加更多语言和更多错误类型识别。",
@@ -161,4 +178,3 @@ def run_evaluation() -> None:
     print(f"已完成 {len(cases)} 条样例测试。")
     print(f"测试结果：{OUTPUT_PATH}")
     print(f"评测报告：{REPORT_PATH}")
-
