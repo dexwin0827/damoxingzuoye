@@ -59,6 +59,13 @@ python run_tests.py
 - `outputs/test_results.json`
 - `reports/evaluation_report.md`
 
+## 详细文档
+
+- [详细使用说明](docs/user_guide.md)
+- [系统设计文档](reports/system_design.md)
+- [测试报告](reports/evaluation_report.md)
+- [实验报告](reports/experiment_report.md)
+
 ## mock 与 OpenAI 模式
 
 默认模式为 mock：
@@ -91,4 +98,3 @@ mock 模式不需要。`requirements.txt` 中也说明了这一点。
 
 **为什么不做 RAG、多 Agent 或数据库？**  
 本项目定位是课程作业级原型，重点是系统设计、模型调用接口、异常处理和评测闭环。过度工程化会增加代码复杂度，不利于作业验收。
-
