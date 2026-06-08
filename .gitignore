@@ -4,3 +4,5 @@ __pycache__/
 .venv/
 venv/
 llm_code_explainer/outputs/feedback.jsonl
+llm_code_explainer/outputs/presentations/
+llm_code_explainer/reports/artifact-build-manifest.json

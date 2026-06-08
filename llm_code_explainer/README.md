@@ -73,6 +73,7 @@ python run_tests.py
 - [系统设计文档](reports/system_design.md)
 - [测试报告](reports/evaluation_report.md)
 - [实验报告](reports/experiment_report.md)
+- [汇报 PPT](reports/code_explainer_presentation.pptx)
 
 本项目采用结构化输出作为可选组件，并额外提供轻量用户反馈机制；未引入 RAG、多 Agent、数据库或复杂前端。
 
